@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Elimina el scroll */
+    background-color: #99add8;
+}
+
+.map-container {
+    margin-top: 20px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #99add8;
+}
+
+/* Estilos para los países */
+
+path {    
+    cursor: pointer;
+    /* REMOVER la declaración !important */
+    fill: #6c8a71;
+    stroke: #000000;
+    stroke-width: 0.3;
+    transition: fill 0.3s ease;
+}
+
+/* Efecto hover */
+path:hover {
+    fill: #5fb95f !important; /* Color al pasar el mouse */
+}
+
+/* Estilos para los paneles */
+.panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.86);
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.panel-content {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
+}
+
+.panel button {
+    background-color: #ffcc00;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.color-panel {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.color-panel div {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f44336;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.map-container {
+    position: relative;
+}
+

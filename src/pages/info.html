@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Información del País</title>
+</head>
+<body>
+    <h1 id="country-name"></h1>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const countryName = urlParams.get('country');
+        document.getElementById('country-name').textContent = countryName;
+    </script>
+</body>
+</html>
