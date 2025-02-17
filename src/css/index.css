@@ -26,6 +26,7 @@ path {
     stroke: #000000;
     stroke-width: 0.3;
     transition: fill 0.3s ease;
+
 }
 
 /* Efecto hover */
@@ -161,3 +162,143 @@ path:hover {
     position: relative;
 }
 
+/* ... (Tus estilos anteriores se mantienen igual hasta .map-container) ... */
+
+/* Estilos Responsive */
+@media (max-width: 768px) {
+    .panel-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .panel-content h1 {
+        font-size: 1.8em;
+    }
+
+    .panel-content h2 {
+        font-size: 1.4em;
+    }
+
+    .panel button {
+        padding: 12px 24px;
+        font-size: 1em;
+    }
+
+    .color-panel {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .color-panel div {
+        width: 35px;
+        height: 35px;
+    }
+
+    .close-btn {
+        top: 10px;
+        right: 10px;
+        padding: 12px;
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    html, body {
+        margin-top: 10px;
+    }
+
+    .map-container {
+        margin-top: 10px;
+    }
+
+    .panel-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .panel-content h1 {
+        font-size: 1.5em;
+    }
+
+    .panel-content p {
+        font-size: 0.9em;
+    }
+
+    .panel button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .color-panel {
+        gap: 8px;
+    }
+
+    .color-panel div {
+        width: 30px;
+        height: 30px;
+    }
+
+    .close-btn {
+        padding: 10px;
+        font-size: 1em;
+    }
+}
+
+/* Para pantallas muy pequeñas (orientación vertical) */
+@media (max-width: 360px) and (orientation: portrait) {
+    .panel-content {
+        border-radius: 8px;
+    }
+
+    .panel-content h1 {
+        font-size: 1.3em;
+    }
+
+    .panel-content p {
+        font-size: 0.8em;
+    }
+
+    .color-panel div {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Ajustes para tablets en orientación horizontal */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .panel-content {
+        width: 70%;
+    }
+
+    .color-panel {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+/* Mejora de la rejilla de colores para móviles */
+@media (hover: none) and (pointer: coarse) {
+    .color-panel {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        gap: 10px;
+    }
+
+    .color-panel div:hover {
+        transform: none; /* Desactiva el efecto hover en dispositivos táctiles */
+    }
+}
+
+/* Ajuste del SVG para pantallas pequeñas */
+@media (max-width: 600px) {
+    #map-svg {
+        stroke-width: 0.2; /* Hacer líneas más delgadas */
+    }
+}
+
+/* Prevenir zoom en dispositivos móviles (opcional) */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+    user-zoom: fixed;
+}
