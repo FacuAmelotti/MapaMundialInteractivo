@@ -171,7 +171,6 @@ const countryNames = {
      "US": "Estados Unidos", 
      "GB": "Reino Unido" 
    };
-
    document.addEventListener("DOMContentLoaded", () => {
     const introPanel = document.getElementById('intro-panel');
     const colorPanel = document.getElementById('color-panel');
@@ -197,9 +196,16 @@ const countryNames = {
     countryNameDiv.style.display = 'none'; // Inicialmente oculto
     document.body.appendChild(countryNameDiv);
 
-    // Función de zoom
+    // Función para aplicar la transformación del mapa
     const applyTransform = () => {
         svg.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scale})`;
+    };
+
+    // Función para resetear todos los colores a los originales
+    const resetCountryColors = () => {
+        document.querySelectorAll('path').forEach(country => {
+            country.style.fill = originalColor[country.id] || '#6c8a71';
+        });
     };
 
     // Eventos de zoom con rueda del mouse
@@ -240,10 +246,7 @@ const countryNames = {
 
         // Función para obtener el nombre del país
         const getCountryName = (countryElement) => {
-            // Primero intenta obtenerlo del atributo "name", luego de "id", y finalmente de "class"
             let countryName = countryElement.getAttribute('name') || countryElement.id || countryElement.classList[0] || "Unknown Country";
-            
-            // Si el nombre está en el diccionario de países, lo reemplaza
             return countryNames[countryName] || countryName;
         };
 
@@ -267,11 +270,8 @@ const countryNames = {
         country.addEventListener('click', (e) => {
             e.stopPropagation();
             selectedCountry = country;
-
-            // Obtener y mostrar el nombre del país en el panel de selección de color
             const countryName = getCountryName(country);
             selectedCountryNameElement.textContent = countryName;
-
             colorPanel.style.display = 'flex';
         });
     });
@@ -292,4 +292,30 @@ const countryNames = {
             colorPanel.style.display = 'none';
         }
     });
+
+    // Limpiar todos los países (restaurar todos los colores)
+    document.getElementById('button_clear').addEventListener('click', () => {
+        resetCountryColors();
+    });
+
+// Limpiar todos los países (restaurar todos los colores) y resetear el zoom y centrado
+document.getElementById('button_centrar').addEventListener('click', () => {
+    // Restauramos el viewBox al estado inicial del SVG
+    const svg = document.getElementById('map-svg');
+    const initialViewBox = "0 0 2000 857"; // Asegúrate de ajustar estos valores a los de tu SVG
+    svg.setAttribute("viewBox", initialViewBox); // Reseteamos el viewBox
+
+    // También podemos asegurarnos de eliminar cualquier transform aplicado
+    svg.style.transform = ''; // Si hay alguna transformación aplicada, la eliminamos
+
+    // Restauramos las variables scale y pos al estado inicial
+    scale = 1;
+    pos = { x: 0, y: 0 };
+
+    // Aplicamos la transformación para que vuelva al centro con el zoom normal
+    applyTransform();
+});
+
+
+
 });
